@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native';
 import { Container, Content } from 'native-base';
-import Icons from 'react-native-vector-icons/Entypo'
+import Icons from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/AntDesign'
+import Iconss from 'react-native-vector-icons/Entypo'
 let { height, width } = Dimensions.get('window');
 
 class Home extends React.Component {
@@ -13,39 +15,39 @@ class Home extends React.Component {
         this.state = {
             popularData: [
                 {
-                    img: 'bookmarks',
+                    img: require('../img/shoes.jpg'),
                     heading: 'BOOKMARKS'
                 },
                 {
-                    img: 'bowl',
+                    img: require('../img/earphone.jpg'),
                     heading: 'BOWL'
                 },
                 {
-                    img: 'calculator',
+                    img: require('../img/earphone.jpg'),
                     heading: 'CALCULATOR'
                 },
                 {
-                    img: 'box',
+                    img: require('../img/earphone.jpg'),
                     heading: 'BOX'
                 },
                 {
-                    img: 'camera',
+                    img: require('../img/earphone.jpg'),
                     heading: 'CAMERA'
                 },
                 {
-                    img: 'browser',
+                    img: require('../img/earphone.jpg'),
                     heading: 'BROWSER'
                 },
                 {
-                    img: 'colours',
+                    img: require('../img/earphone.jpg'),
                     heading: 'COLOURS'
                 },
                 {
-                    img: 'clipboard',
+                    img: require('../img/earphone.jpg'),
                     heading: 'CLIPBOARD'
                 },
                 {
-                    img: 'clock',
+                    img: require('../img/earphone.jpg'),
                     heading: 'CLOCK'
                 }
             ],
@@ -56,31 +58,37 @@ class Home extends React.Component {
         console.log(this.props,"props")
         let { popularData } = this.state
         return (
-            <Container >
-                <Content contentContainerStyle={{flex: 1,backgroundColor: '#eee'}}>
-                    <View style={{flex: 1}}>
-                        <View style={{flex: 1,backgroundColor: '#2585ee',justifyContent: 'center',alignItems: 'center'}}>
-                            <View style={{height: 60,width: 60,borderRadius: 30,overflow: 'hidden'}}>
-                                <Image source={require('../img/user.jpeg')} style={styles.imageStyle}/>
-                            </View>
-                            <Text style={{fontSize: 26,color: '#fff'}}>Markus Vans</Text>
-                            <Text style={{fontSize: 14,color: '#fff'}}>80 PTS</Text>
-                        </View>
-                        <View style={{flex: 2,marginTop: -40}}>
-                            <ScrollView>
-                                <View style={{flexWrap: 'wrap',flexDirection: 'row',justifyContent: 'space-around',alignItems: 'center'}}>
-                                    {popularData.map((item,key) => {
-                                        return(
-                                            <TouchableOpacity style={{width: width/2 - 20, height: width/2 - 40,backgroundColor: '#fff',borderRadius: 5,marginBottom: 20,alignItems: 'center',justifyContent: 'center',elevation: 2}} key={key} activeOpacity={0.9}>
-                                                <Icons name={item.img} color ='#bbb' size={35}/>
-                                                <Text style={{fontSize: 14,marginTop: 10,color: '#000'}}>{item.heading}</Text>
-                                            </TouchableOpacity>
-                                        )
-                                    })}
-                                    
+            <Container>
+                <Content>
+                    <View style={{marginTop: 30}}>
+                        <Text style={styles.headingText}>My Cart</Text>
+                        {popularData.map((item, key) =>{
+                            return(
+                                <View style={styles.mainCon} key={key}>
+                                    <View>
+                                        <View style={{position: 'absolute',right: 5,top: -5}}>
+                                            <TouchableOpacity><Iconss name="cross" size={25} color="#cbcbcd"/></TouchableOpacity>
+                                        </View>
+                                        <View style={styles.mainViewCon}>
+                                            <Image source={require('../img/watch.png')} style={{height: '100%',width: '100%'}}/>
+                                        </View>
+                                        <View style={styles.textView}>
+                                            <Text style={styles.mainText}>Bose Quiet Comfort</Text>
+                                            <Text style={[styles.mainText,{fontSize: 12,marginBottom: 6}]}>Black</Text>
+                                            <View>
+                                                <Text style={{color: '#000',fontSize: 13,fontWeight: 'bold'}}>$520</Text>
+                                                <View style={styles.absView}>
+                                                    <TouchableOpacity><Icon name="minus" size={25} style={{marginRight: 10}} color="#cbcbcd"/></TouchableOpacity>
+                                                    <View style={{backgroundColor: '#fff',height: 30,width: 30,borderWidth: 0.5,borderColor: '#eee',marginRight: 12,justifyContent: 'center',alignItems: 'center'}}><Text style={{color: '#cbcbcd'}}>1</Text></View>
+                                                    <TouchableOpacity><Icons name="md-add" size={25} color="#cbcbcd"/></TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
                                 </View>
-                            </ScrollView>
-                        </View>
+                            )
+                            })}
+                        
                     </View>
                 </Content>
             </Container>
@@ -90,139 +98,42 @@ class Home extends React.Component {
 export default Home;
 
 const styles = StyleSheet.create({
-    searchBox: {
-        paddingLeft: 20,
-        paddingRight: 60
-    },
-    search: {
-        position: 'absolute',
-        left: 30,
-        top: 11,
-        zIndex: 10
-    },
-    textInput: {
-        height: 40,
-        fontSize: 14,
+    headingText: {
+        fontSize: 22,
         color: '#000',
-        backgroundColor: '#fff',
-        borderRadius: 4,
-        paddingLeft: 40,
-        borderWidth: 1,
-        borderColor: '#eee'
-    },
-    filterIcon: {
-        position: 'absolute',
-        right: 20,
-        top: 10
-    },
-    headingView: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        marginTop: 20,
+        textAlign: 'center',
         marginBottom: 20
     },
-    heading: {
-        fontSize: 20,
-        color: '#000',
-        fontWeight: 'bold'
-    },
-    rightMore: {
-        position: 'absolute',
-        right: 20,
-        top: 10
-    },
-    rightMoreText: {
-        fontSize: 12,
-        color: '#bbb'
-    },
-    mainView: {
-        width: 150,
-        height: 150,
-        borderRadius: 4,
-        backgroundColor: '#eee',
-        overflow: 'hidden',
-        marginRight: 15
-    },
     mainCon: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        flexDirection: 'row',
-        marginBottom: 10
+        padding: 10,
+        backgroundColor: '#f9f6fd',
+        height: 90,
+        marginLeft: 10,
+        marginRight: 10,borderRadius: 5,
+        marginBottom: 5
     },
-    imageStyle: {
-        width: '100%',
-        height: '100%'
-    },
-    texthead: {
+    mainViewCon: {
+        height: 70,
+        width: 60,
         position: 'absolute',
-        left: 10,
-        bottom: 30,
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-    textUsdCon: {
-        flexDirection: 'row',
-        position: 'absolute',
-        bottom: 10,
         left: 10
     },
-    textUsd: {
-        fontSize: 10,
-        color: '#fff'
+    textView: {
+        marginLeft: 90,
+        height: 70,
+        justifyContent: 'center'
     },
-    activityHead: {
+    mainText: {
+        color: '#a9a6ad',
+        fontSize: 14,
+        marginBottom: 1
+    },
+    absView: {
         position: 'absolute',
-        right: 10,
-        bottom: 25,
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold'
-    },
-    textActivityCon: {
+        right: 15,
         flexDirection: 'row',
-        position: 'absolute',
-        bottom: 10,
-        right: 10
-    },
-    mainList: {
-        marginLeft: 20,
-        marginRight: 20,
-        flexDirection: 'row',
-        backgroundColor: '#fff',
-        marginBottom: 15,
-        borderRadius: 5
-    },
-    imageOuter: {
-        width: 80,
-        height: 80,
-        overflow: 'hidden',
-        backgroundColor: '#eee',
-        borderRadius: 1,
-        borderTopLeftRadius: 5,
-        borderBottomLeftRadius: 4
-    },
-    rightList: {
-        padding: 15,
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    tripFrance: {
-        fontSize: 16,
-        color: '#000',
-        marginBottom: 3
-    },
-    usdTextActivity: {
-        flexDirection: 'row',
-        marginBottom: 3
-    },
-    usdTextAct: {
-        fontSize: 10,
-        color: '#bbb'
-    },
-    usdTextActText: {
-        marginLeft:10,
-        color: '#bbb',
-        fontSize: 10,
+        height: 30,
+        alignItems: 'center',
+        bottom: -7
     }
 });
